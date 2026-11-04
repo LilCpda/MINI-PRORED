@@ -16,7 +16,7 @@ export function initSocket(httpServer) {
             
             try{
                 const payload = jwt.verify(token, process.env.JWT_SECRET);
-                socket.userId = payload.Id;
+                socket.userId = payload.id;
                 next();
             } catch {
                 next(new Error("Authentication error"));
@@ -24,7 +24,7 @@ export function initSocket(httpServer) {
         });
         
     io.on("connection", (socket) => {
-        console.log("Cliente no encontrado:", socket.id, "usuario:", socket.userId);
+        console.log("Cliente conectado:", socket.id, "usuario:", socket.userId);
 
         socket.join(`user:${socket.userId}`);
 

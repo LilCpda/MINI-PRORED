@@ -22,7 +22,7 @@ export const register = async (req, res) => {
     }
 
     const hash = await bcrypt.hash(password, 10);
-    const user = User.create({ username, email, password: hash });
+    const user = await User.create({ username, email, password: hash });
 
     res.status(201).json({
         user: { id: user._id, username: user.username, email: user.email},
@@ -49,7 +49,7 @@ export const login = async (req, res) => {
     };
 
     export const me = async (req, res) => {
-        const user = await User.findById(req.userId);
+        const user = await User.findById(req.user.id);
         res.json(user);
     };
     

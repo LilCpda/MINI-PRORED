@@ -20,6 +20,6 @@ await Post.create({ content: "Mi primer post", author: user._id });
 console.log("SIN populante:", await Post.find());
 
 const posts = await Post.find().populate("author", "username email");
-console.log("CON populate:", JSON.stringify(Post, null, 2));
+console.log("CON populate:", JSON.stringify(posts, null, 2));
 
 await mongoose.disconnect();

@@ -1,4 +1,4 @@
-import {router} from "express";
+import { Router } from "express";
 import { createPost, getPosts, getPostById, updatePost, deletePost } from "../controllers/post.controller.js";
 import { verifyToken } from "../middlewares/auth.js";
 import { upload } from "../middlewares/upload.js";
@@ -10,7 +10,7 @@ router.get("/", getPosts);
 router.get("/:id", getPostById);
 
 // Protegidas (requieren token)
-router.post("/", verifyToken, createPost);        // requieren login
+router.post("/", verifyToken, upload.single("image"), createPost);
 router.patch("/:id", verifyToken, updatePost);
 router.delete("/:id", verifyToken, deletePost);
 

@@ -1,6 +1,9 @@
 import express from "express";
 import postRoutes from "./routes/post.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+if (err.code === "LIMIT_FILE_SIZE") {
+  return res.status(400).json({ error: "La imagen supera los 5 MB" });
+}
 
 const app = express();
 

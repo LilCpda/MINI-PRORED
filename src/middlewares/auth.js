@@ -9,7 +9,7 @@ export const verifyToken = (req, res, next) => {
     const token = header.split(" ")[1];
 
     try {const payload = jwt.verify(token, process.env.JWT_SECRET);
-        req.userId = payload.id;
+        req.user = { id: payload.id };
         next();
     } catch {
         res.status(401).json({ error: "Token inválido" });
